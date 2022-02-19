@@ -2,9 +2,10 @@ const express = require("express");
 const { chats } = require("./data/data");
 const dotenv = require("dotenv");
 //creating instance of that variable
-const app = express();
 dotenv.config();
+const app = express();
 
+app.use(express.json()); //to accept json data
 //creating our express api, initiating a get request to the / route, takes a parameter which is a callback
 //the callback takes request and response. We're going to send a response to the / route.
 app.get("/", (req, res) => {
