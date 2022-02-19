@@ -37,8 +37,8 @@ const Signup = () => {
         <InputGroup>
           <Input
             type={show ? "text" : "password"}
-            placeholder="Enter Your Email"
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter Your Password"
+            onChange={(e) => setPassword(e.target.value)}
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
