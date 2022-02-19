@@ -13,6 +13,8 @@ const Signup = () => {
   const [pic, setPic] = useState();
 
   const handleClick = () => setShow(!show);
+  const postDetails = (pics) => {};
+  const submitHandler = () => {};
 
   return (
     <VStack spacing="5px" color="black">
@@ -34,7 +36,7 @@ const Signup = () => {
         <FormLabel>Password</FormLabel>
         <InputGroup>
           <Input
-            type={"password"}
+            type={show ? "text" : "password"}
             placeholder="Enter Your Email"
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -45,6 +47,39 @@ const Signup = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
+      <FormControl id="password" isRequired>
+        <FormLabel>Confirm Password</FormLabel>
+        <InputGroup size="md">
+          <Input
+            type={show ? "text" : "password"}
+            placeholder="Confirm Password"
+            onChange={(e) => setConfirmpassword(e.target.value)}
+          />
+          <InputRightElement width="4.5rem">
+            <Button h="1.75rem" size="sm" onClick={handleClick}>
+              {show ? "Hide" : "Show"}
+            </Button>
+          </InputRightElement>
+        </InputGroup>
+      </FormControl>
+      <FormControl id="pic">
+        <FormLabel>Upload your Picture</FormLabel>
+        <Input
+          type="file"
+          p={1.5}
+          accept="image/*"
+          onChange={(e) => postDetails(e.target.files[0])}
+        />
+      </FormControl>
+
+      <Button
+        colorScheme="blue"
+        width="100%"
+        style={{ marginTop: 15 }}
+        onClick={submitHandler}
+      >
+        Sign Up
+      </Button>
     </VStack>
   );
 };
