@@ -40,7 +40,7 @@ const Signup = () => {
             placeholder="Enter Your Email"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <InputRightElement>
+          <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
               {show ? "Hide" : "Show"}
             </Button>
