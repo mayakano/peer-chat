@@ -14,15 +14,15 @@ const ChatPage = () => {
   };
 
   //useEffect is a hook in react which runs when the component is rendered for the first time
-
   useEffect(() => {
     fetchChats();
   }, []);
 
   return (
     <div>
+      <p>ChatPage</p>
       {chats.map((chat) => (
-        <div>{chat.chatName}</div>
+        <div key={chat._id}>{chat.chatName}</div>
       ))}
     </div>
   );
