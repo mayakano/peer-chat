@@ -1,8 +1,11 @@
 const express = require("express");
 const { chats } = require("./data/data");
 const dotenv = require("dotenv");
+const connectDB = require("./config/db");
+const colors = require("colors");
 //creating instance of that variable
 dotenv.config();
+connectDB();
 const app = express();
 
 app.use(express.json()); //to accept json data
@@ -27,7 +30,7 @@ app.get("/api/chat/:id", (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 //now with app variable we can start our server
-app.listen(PORT, console.log(`Server Started on ${PORT}`));
+app.listen(PORT, console.log(`Server Started on ${PORT}`.yellow.bold));
 
 //to run file in terminal write npm start
 //everytime we write something on this file we have to restart our server.
