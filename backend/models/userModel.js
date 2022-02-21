@@ -1,19 +1,34 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const userSchema = mongoose.Schema(
   {
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    password: { type: String, required: true },
+    name: { type: "String", required: true },
+    email: { type: "String", required: true, unique: true },
+    password: { type: "String", required: true },
     pic: {
-      type: String,
-      required: true,
+      type: "String",
+      required: false,
       default:
         "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
     },
   },
   { timestamps: true }
 );
+
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
+
+//before saving we need to encrypt the password that is going to be posted to db
+userSchema.pre("save", async function (next) {
+  if (!this.ismodified) {
+    next();
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
 
 const User = mongoose.model("User", userSchema);
 
