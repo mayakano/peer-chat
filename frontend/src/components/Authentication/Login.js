@@ -3,12 +3,17 @@ import { VStack } from "@chakra-ui/layout";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Button } from "@chakra-ui/button";
+import { useToast } from "@chakra-ui/react";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
+  const [loading, setLoading] = useState(false);
+  const toast = useToast();
+  const history = useHistory();
   const handleClick = () => setShow(!show);
   const submitHandler = () => {};
 
